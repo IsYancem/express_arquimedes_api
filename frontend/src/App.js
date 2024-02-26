@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard';
 import Temas from './views/Temas'; 
 import Estudiantes from './views/Estudiantes'; 
 import loginImage from './loginImage.jpg'; // Importa tu imagen de login
+import './App.css'; // Importa tu archivo CSS
 
 function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -29,26 +30,29 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="image-container">
-        <img src={loginImage} alt="Login" className="login-image" />
-      </div>
-      <div className="form-container">
-        <h1>Login</h1>
-        {error && <p>{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username or Email:
-            <input type="text" value={usernameOrEmail} onChange={(e) => setUsernameOrEmail(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </label>
-          <br />
-          <button type="submit">Login</button>
-        </form>
+    <div className="login-page-container"> {/* Cambio aquí */}
+      <h1>Arquímedes VR</h1> {/* Título */}
+      <h2>Iniciar sesión</h2> {/* Subtítulo */}
+      <div className="login-container">
+        <div className="image-container">
+          <img src={loginImage} alt="Login" className="login-image" />
+        </div>
+        <div className="form-container">
+          {error && <p>{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <label>
+              Username or Email:
+              <input type="text" value={usernameOrEmail} onChange={(e) => setUsernameOrEmail(e.target.value)} />
+            </label>
+            <br />
+            <label>
+              Password:
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </label>
+            <br />
+            <button type="submit">Login</button>
+          </form>
+        </div>
       </div>
     </div>
   );

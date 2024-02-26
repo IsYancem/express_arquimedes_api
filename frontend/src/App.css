@@ -1,30 +1,91 @@
-/* Estilos para el contenedor de login y la imagen */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-page-container {
+  text-align: center;
+  width: 80%;
+  max-width: 1000px;
+}
+
 .login-container {
   display: flex;
-  flex-direction: column; /* O usa 'row' si prefieres una disposición lateral */
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  background-color: #004d40;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 20px;
 }
 
 .image-container {
-  width: 100%; /* Ajusta al ancho del contenedor */
+  width: 70%;
   display: flex;
-  justify-content: center; /* Centra la imagen horizontalmente */
+  justify-content: center;
+  align-items: center; 
+}
+
+.form-container {
+  width: 30%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container label {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.form-container input {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.form-container button {
+  margin-top: 20px; 
+  width: 100%; 
+  padding: 15px 20px;
+  background-color: #00897b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #00695c;
 }
 
 .login-image {
-  width: 25vw; /* Hace que la imagen siempre ocupe el 25% del ancho de la vista */
-  max-width: 100%; /* Asegura que la imagen no se desborde de su contenedor */
+  width: 100%; 
+  height: auto;
 }
 
-/* Ajustes para la responsividad */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
   }
 
+  .image-container, .form-container {
+    width: 100%;
+  }
+
   .login-image {
-    width: 50vw; /* Aumenta el tamaño en pantallas más pequeñas si es necesario */
+    width: 100%; 
   }
 }

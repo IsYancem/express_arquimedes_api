@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tb_user {
+  id            Int                @id @default(autoincrement())
+  username      String
+  email         String
+  password      String
+  name          String
+  lastname      String
+  role_id       Int
+  role          tb_role            @relation(fields: [role_id], references: [id]) 
+  create_date DateTime   @default(now())
+  modify_date DateTime   @default(now())
+  tb_historial_user   tb_historial_user[]
+}
+
+model tb_role {
+  id          Int        @id @default(autoincrement())
+  name        String
+  tb_user     tb_user[]
+  create_date DateTime   @default(now())
+  modify_date DateTime   @default(now())
+}
+
+model tb_historial_user {
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  puntaje     Int
+  correctas   String
+  incorrectas String
+  create_date DateTime
+  modify_date DateTime
+  user        tb_user  @relation(fields: [user_id], references: [id])
+}
+
+model tb_tema {
+  id          Int                @id @default(autoincrement())
+  nombre_tema String
+  tb_explicacion tb_explicacion[]
+  tb_ejercicio   tb_ejercicio[]
+}
+
+model tb_explicacion {
+  id          Int      @id @default(autoincrement())
+  teoria_1    String
+  teoria_2    String
+  teoria_3    String
+  tema_id     Int
+  tema        tb_tema  @relation(fields: [tema_id], references: [id])
+}
+
+model tb_ejercicio {
+  id             Int      @id @default(autoincrement())
+  enunciado      String
+  tema_id        Int
+  respuesta_1_id Int
+  respuesta_2_id Int
+  respuesta_3_id Int
+  respuesta_4_id Int
+  tema           tb_tema      @relation(fields: [tema_id], references: [id])
+  respuesta_1    tb_respuesta @relation("Respuesta1", fields: [respuesta_1_id], references: [id])
+  respuesta_2    tb_respuesta @relation("Respuesta2", fields: [respuesta_2_id], references: [id])
+  respuesta_3    tb_respuesta @relation("Respuesta3", fields: [respuesta_3_id], references: [id])
+  respuesta_4    tb_respuesta @relation("Respuesta4", fields: [respuesta_4_id], references: [id])
+}
+
+model tb_respuesta {
+  id          Int           @id @default(autoincrement())
+  respuesta   String
+  is_true     Boolean
+  tb_ejercicio_tb_respuesta_1_idToTb_ejercicio_respuesta_1_id tb_ejercicio[] @relation("Respuesta1")
+  tb_ejercicio_tb_respuesta_2_idToTb_ejercicio_respuesta_2_id tb_ejercicio[] @relation("Respuesta2")
+  tb_ejercicio_tb_respuesta_3_idToTb_ejercicio_respuesta_3_id tb_ejercicio[] @relation("Respuesta3")
+  tb_ejercicio_tb_respuesta_4_idToTb_ejercicio_respuesta_4_id tb_ejercicio[] @relation("Respuesta4")
+}

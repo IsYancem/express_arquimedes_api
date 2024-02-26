@@ -1,0 +1,30 @@
+/* Estilos para el contenedor de login y la imagen */
+.login-container {
+  display: flex;
+  flex-direction: column; /* O usa 'row' si prefieres una disposición lateral */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+}
+
+.image-container {
+  width: 100%; /* Ajusta al ancho del contenedor */
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+}
+
+.login-image {
+  width: 25vw; /* Hace que la imagen siempre ocupe el 25% del ancho de la vista */
+  max-width: 100%; /* Asegura que la imagen no se desborde de su contenedor */
+}
+
+/* Ajustes para la responsividad */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-image {
+    width: 50vw; /* Aumenta el tamaño en pantallas más pequeñas si es necesario */
+  }
+}

@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { createTemaWithDetails } from '../controllers/temaController';
+import { createTemaWithDetails, getTemasWithDetails } from '../controllers/temaController';
 
 const router = Router();
 
 router.post('/temas', createTemaWithDetails);
+router.get('/temas', getTemasWithDetails);
 
 export default router;

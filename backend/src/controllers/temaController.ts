@@ -52,3 +52,27 @@ export const createTemaWithDetails = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'An unexpected error occurred' });
   }
 };
+
+export const getTemasWithDetails = async (req: Request, res: Response) => {
+  try {
+    const temas = await prisma.tb_tema.findMany({
+      include: {
+        tb_explicacion: true,
+        tb_ejercicio: {
+          include: {
+            respuesta_1: true,
+            respuesta_2: true,
+            respuesta_3: true,
+            respuesta_4: true,
+          },
+        },
+      },
+    });
+    return res.status(200).json(temas);
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(400).json({ error: error.message });
+    }
+    return res.status(500).json({ error: 'An unexpected error occurred' });
+  }
+};

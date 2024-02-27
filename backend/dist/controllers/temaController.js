@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTemaWithDetails = void 0;
+exports.getTemasWithDetails = exports.createTemaWithDetails = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const createTemaWithDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -61,3 +61,28 @@ const createTemaWithDetails = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.createTemaWithDetails = createTemaWithDetails;
+const getTemasWithDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const temas = yield prisma.tb_tema.findMany({
+            include: {
+                tb_explicacion: true,
+                tb_ejercicio: {
+                    include: {
+                        respuesta_1: true,
+                        respuesta_2: true,
+                        respuesta_3: true,
+                        respuesta_4: true,
+                    },
+                },
+            },
+        });
+        return res.status(200).json(temas);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ error: error.message });
+        }
+        return res.status(500).json({ error: 'An unexpected error occurred' });
+    }
+});
+exports.getTemasWithDetails = getTemasWithDetails;

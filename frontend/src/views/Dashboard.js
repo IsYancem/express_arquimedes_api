@@ -6,18 +6,15 @@ import Footer from './Footer'; // Importa el componente Footer
 function Dashboard() {
   return (
     <div className="container">
-      {/* Barra de Navegación */}
-      <Navbar /> {/* Utiliza el componente Navbar aquí */}
+      <Navbar /> 
       
-      {/* Contenido Principal */}
       <main className="main-content">
+        <button className="add-button">+</button>
         <h1>Bienvenido al Dashboard</h1>
-        {/* Aquí puedes agregar más contenido, como tablas, gráficos, etc. */}
         <p>Este es el área principal de tu dashboard. Aquí puedes mostrar información relevante para el usuario, como estadísticas, gráficos, o cualquier otra información importante.</p>
       </main>
       
-      {/* Pie de Página (Opcional) */}
-      <Footer /> {/* Utiliza el componente Footer aquí */}
+      <Footer /> 
     </div>
   );
 }

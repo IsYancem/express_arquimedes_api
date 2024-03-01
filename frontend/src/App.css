@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 body, html {
   margin: 0;
   padding: 0;
@@ -8,83 +9,43 @@ body, html {
 }
 
 .login-page-container {
+=======
+.App {
+>>>>>>> Stashed changes
   text-align: center;
-  width: 80%;
-  max-width: 1000px;
 }
 
-.login-container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: stretch;
-  background-color: #004d40;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 20px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.image-container {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.form-container {
-  width: 30%;
-  padding: 20px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.form-container label {
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
-  margin-bottom: 5px;
 }
 
-.form-container input {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
+.App-link {
+  color: #61dafb;
 }
 
-.form-container button {
-  margin-top: 20px; 
-  width: 100%; 
-  padding: 15px 20px;
-  background-color: #00897b;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s;
-}
-
-.form-container button:hover {
-  background-color: #00695c;
-}
-
-.login-image {
-  width: 100%; 
-  height: auto;
-}
-
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-
-  .image-container, .form-container {
-    width: 100%;
-  }
-
-  .login-image {
-    width: 100%; 
+  to {
+    transform: rotate(360deg);
   }
 }

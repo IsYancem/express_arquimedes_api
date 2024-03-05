@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import '../styles/LoginForm.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Hook para navegar
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
     const requestBody = {
       usernameOrEmail: username,
       password: password,
@@ -26,13 +28,17 @@ const LoginForm = () => {
 
       if (response.ok) {
         console.log('Inicio de sesión exitoso');
-        navigate('/dashboard'); // Redirecciona a Dashboard
+        navigate('/dashboard');
       } else {
         console.error('Error al iniciar sesión:', response.statusText);
       }
     } catch (error) {
       console.error('Error al realizar la solicitud:', error.message);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
   };
 
   return (
@@ -53,7 +59,19 @@ const LoginForm = () => {
               <br />
               <label>
                 Contraseña:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <div className="password-input-container">
+                  <input
+                    type={isPasswordVisible ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="password-input"
+                  />
+                  <FontAwesomeIcon
+                    icon={isPasswordVisible ? faEyeSlash : faEye}
+                    onClick={togglePasswordVisibility}
+                    className="password-toggle-icon"
+                  />
+                </div>
               </label>
               <br />
               <button type="submit">Iniciar Sesión</button>

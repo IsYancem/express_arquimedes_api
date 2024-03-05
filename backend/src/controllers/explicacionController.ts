@@ -1,32 +1,31 @@
-// src/controllers/explicacionController.ts
+// Suponiendo que usas Prisma, ejemplo de controlador en src/controllers/ExplicacionController.ts
 import { Request, Response } from 'express';
-import db from '../path/to/your/database/configuration'; // Ajusta esta ruta a tu configuración de base de datos real
+import { prisma } from '../prisma/prismaClient';
 
-async function addImageToExplicacion(req: Request, res: Response): Promise<void> {
+export const updateExplicacionPhotos = async (req: Request, res: Response) => {
+    const { id } = req.params; // ID de tb_explicacion
+    const files: any = req.files; // Multer coloca los archivos subidos aquí
+
     try {
-        const { id } = req.body; // Asegúrate de incluir el 'id' de la explicación en el cuerpo de la petición
-        const updates: { [key: string]: string } = {};
+        const updateData: any = {};
 
-        if (req.files['photo_teoria_1']) {
-            updates.photo_teoria_1 = `/photo_theory/${req.files['photo_teoria_1'][0].filename}`;
+        if (files.photo_teoria_1) {
+            updateData.photo_teoria_1 = files.photo_teoria_1[0].path;
         }
-        if (req.files['photo_teoria_2']) {
-            updates.photo_teoria_2 = `/photo_theory/${req.files['photo_teoria_2'][0].filename}`;
+        if (files.photo_teoria_2) {
+            updateData.photo_teoria_2 = files.photo_teoria_2[0].path;
         }
-        if (req.files['photo_teoria_3']) {
-            updates.photo_teoria_3 = `/photo_theory/${req.files['photo_teoria_3'][0].filename}`;
+        if (files.photo_teoria_3) {
+            updateData.photo_teoria_3 = files.photo_teoria_3[0].path;
         }
 
-        // Actualizar la base de datos con las nuevas rutas
-        await db.tb_explicacion.update({
+        const updatedExplicacion = await prisma.tb_explicacion.update({
             where: { id: parseInt(id) },
-            data: updates,
+            data: updateData,
         });
 
-        res.status(200).json({ message: 'Imagen(es) agregada(s) correctamente.' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.json(updatedExplicacion);
+    } catch (error: any) { // Especificar el tipo de error como 'any'
+        res.status(500).send(error.message);
     }
-}
-
-export { addImageToExplicacion };
+};  

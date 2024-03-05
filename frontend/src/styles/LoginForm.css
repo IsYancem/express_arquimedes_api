@@ -1,81 +1,95 @@
 /* LoginForm.css */
 /* Estilos para la disposición de la pantalla */
 .login-container {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 .image-section {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end; /* Alinea la imagen al borde derecho */
-    align-items: center;
-    max-width: 50%;
-    overflow: hidden;
-    padding: 0; /* Elimina todo el padding */
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 50%;
+  overflow: hidden;
+  padding: 0;
 }
 
 .image-section img {
-    max-width: 100%;
-    height: 100%; /* Ajusta la altura de la imagen al 100% */
+  max-width: 100%;
+  height: 100%;
 }
 
 .form-section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Estilos para el formulario de inicio de sesión */
 .form-container {
-    width: 100%;
-    background-color: #f0f0f0; /* Color de fondo del rectángulo del formulario */
-    margin: 0; /* Elimina todo el margen */
-    display: flex; /* Utiliza flexbox */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100%; /* Ajusta la altura del formulario al 100% */
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .login-form-container {
-    width: 300px;
-    padding: 20px; /* Añade espacio alrededor del formulario */
+  width: 300px;
+  padding: 20px;
 }
 
 .login-form-container h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .login-form-container form {
-    width: 100%;
+  width: 100%;
 }
 
 .login-form-container label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .login-form-container input[type="text"],
 .login-form-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Ajuste para el icono dentro del campo */
+  margin-bottom: 10px;
+  position: relative; /* Posiciona el ícono correctamente dentro del campo */
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .login-form-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 .login-form-container button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .login-form-container p {
-    margin-top: 20px;
+  margin-top: 20px;
 }

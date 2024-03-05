@@ -17,13 +17,13 @@ const updateExplicacionPhotos = (req, res) => __awaiter(void 0, void 0, void 0, 
     try {
         const updateData = {};
         if (files.photo_teoria_1) {
-            updateData.photo_teoria_1 = files.photo_teoria_1[0].filename; // Cambiado de .path a .filename
+            updateData.photo_teoria_1 = files.photo_teoria_1[0].path;
         }
         if (files.photo_teoria_2) {
-            updateData.photo_teoria_2 = files.photo_teoria_2[0].filename; // Cambiado de .path a .filename
+            updateData.photo_teoria_2 = files.photo_teoria_2[0].path;
         }
         if (files.photo_teoria_3) {
-            updateData.photo_teoria_3 = files.photo_teoria_3[0].filename; // Cambiado de .path a .filename
+            updateData.photo_teoria_3 = files.photo_teoria_3[0].path;
         }
         const updatedExplicacion = yield prismaClient_1.prisma.tb_explicacion.update({
             where: { id: parseInt(id) },
@@ -31,7 +31,7 @@ const updateExplicacionPhotos = (req, res) => __awaiter(void 0, void 0, void 0, 
         });
         res.json(updatedExplicacion);
     }
-    catch (error) {
+    catch (error) { // Especificar el tipo de error como 'any'
         res.status(500).send(error.message);
     }
 });

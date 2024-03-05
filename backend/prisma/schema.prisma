@@ -54,12 +54,15 @@ model tb_tema {
 }
 
 model tb_explicacion {
-  id          Int      @id @default(autoincrement())
-  teoria_1    String
-  teoria_2    String
-  teoria_3    String
-  tema_id     Int
-  tema        tb_tema  @relation(fields: [tema_id], references: [id])
+  id              Int      @id @default(autoincrement())
+  teoria_1        String
+  photo_teoria_1  String?  @default("")
+  teoria_2        String
+  photo_teoria_2  String?  @default("")
+  teoria_3        String
+  photo_teoria_3  String?  @default("")
+  tema_id         Int
+  tema            tb_tema  @relation(fields: [tema_id], references: [id])
 }
 
 model tb_ejercicio {

@@ -9,29 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createExplicacion = void 0;
-const client_1 = require("@prisma/client");
-const prisma = new client_1.PrismaClient();
-const createExplicacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateExplicacionPhotos = void 0;
+const prismaClient_1 = require("../prisma/prismaClient");
+const updateExplicacionPhotos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params; // ID de tb_explicacion
+    const files = req.files; // Multer coloca los archivos subidos aquí
     try {
-        const { teoria_1, teoria_2, teoria_3, tema_id } = req.body;
-        const newExplicacion = yield prisma.tb_explicacion.create({
-            data: {
-                teoria_1,
-                teoria_2,
-                teoria_3,
-                tema: { connect: { id: tema_id } },
-                create_date: new Date(),
-                modify_date: new Date()
-            },
+        const updateData = {};
+        if (files.photo_teoria_1) {
+            updateData.photo_teoria_1 = files.photo_teoria_1[0].filename; // Cambiado de .path a .filename
+        }
+        if (files.photo_teoria_2) {
+            updateData.photo_teoria_2 = files.photo_teoria_2[0].filename; // Cambiado de .path a .filename
+        }
+        if (files.photo_teoria_3) {
+            updateData.photo_teoria_3 = files.photo_teoria_3[0].filename; // Cambiado de .path a .filename
+        }
+        const updatedExplicacion = yield prismaClient_1.prisma.tb_explicacion.update({
+            where: { id: parseInt(id) },
+            data: updateData,
         });
-        return res.status(201).json(newExplicacion);
+        res.json(updatedExplicacion);
     }
     catch (error) {
-        if (error instanceof Error) {
-            return res.status(400).json({ error: error.message });
-        }
-        return res.status(500).json({ error: 'An unexpected error occurred' });
+        res.status(500).send(error.message);
     }
 });
-exports.createExplicacion = createExplicacion;
+exports.updateExplicacionPhotos = updateExplicacionPhotos;

@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import cors from "cors";
+import explicacionRoutes from "./routes/explicacionRoutes"; 
 import userRoutes from "./routes/userRoutes"; 
 import roleRoutes from "./routes/roleRoutes"; 
 import temaRoutes from './routes/temaRoutes'; 
@@ -11,5 +12,6 @@ app.use(express.json());
 app.use('/api', temaRoutes);
 app.use('/api', roleRoutes);
 app.use('/api', userRoutes);
+app.use('/api', explicacionRoutes);
 
 export default app;

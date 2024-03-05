@@ -68,7 +68,7 @@ export const getTemasWithDetails = async (req: Request, res: Response) => {
         },
       },
     });
-    return res.status(200).json(temas);
+    return res.status(200).json({temas});
   } catch (error) {
     if (error instanceof Error) {
       return res.status(400).json({ error: error.message });

@@ -76,7 +76,7 @@ const getTemasWithDetails = (req, res) => __awaiter(void 0, void 0, void 0, func
                 },
             },
         });
-        return res.status(200).json(temas);
+        return res.status(200).json({ temas });
     }
     catch (error) {
         if (error instanceof Error) {

@@ -18,4 +18,5 @@ app.use('/api', roleRoutes_1.default);
 app.use('/api', userRoutes_1.default);
 app.use('/api', explicacionRoutes_1.default);
 app.use('/api', historialUserRoutes_1.default);
+app.use('/api', historialUserRoutes_1.default);
 exports.default = app;

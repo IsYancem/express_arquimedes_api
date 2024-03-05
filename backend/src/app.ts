@@ -15,5 +15,6 @@ app.use('/api', roleRoutes);
 app.use('/api', userRoutes);
 app.use('/api', explicacionRoutes);
 app.use('/api', historialUserRoutes);
+app.use('/api', historialUserRoutes);
 
 export default app;

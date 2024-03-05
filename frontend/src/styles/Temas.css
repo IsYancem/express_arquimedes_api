@@ -1,0 +1,59 @@
+body {
+  margin: 0px;
+  overflow-x: hidden;
+}
+
+.content {
+  margin: 20px;
+}
+
+.temas-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.temas-table th,
+.temas-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.temas-table th {
+  background-color: #f2f2f2;
+}
+
+.temas-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.temas-table tr:hover {
+  background-color: #dddddd;
+}
+
+.edit-icon {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.delete-icon {
+  color: #dc3545;
+}
+
+.note-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px; 
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.note-button:hover {
+  background-color: #0056b3;
+}

@@ -146,3 +146,42 @@ export const getUserByUsername = async (req: Request, res: Response) => {
         return res.status(500).json({ error: 'Se produjo un error inesperado' });
     }
 };
+
+export const getUsersNotDocente = async (req: Request, res: Response) => {
+    try {
+        // Primero, obtener el ID del rol "Docente"
+        const docenteRole = await prisma.tb_role.findFirst({
+            where: {
+                name: 'Docente',
+            },
+        });
+
+        if (!docenteRole) {
+            return res.status(404).json({ error: 'Rol "Docente" no encontrado.' });
+        }
+
+        // Luego, buscar usuarios cuyo role_id no sea el de "Docente"
+        const users = await prisma.tb_user.findMany({
+            where: {
+                role_id: {
+                    not: docenteRole.id,
+                },
+            },
+            select: {
+                username: true,
+                email: true,
+                name: true,
+                lastname: true,
+            },
+        });
+
+        return res.status(200).json(users);
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ error: error.message });
+        }
+        return res.status(500).json({ error: 'Se produjo un error inesperado.' });
+    }
+};
+
+

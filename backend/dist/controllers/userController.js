@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserByUsername = exports.loginUser = exports.createUser = void 0;
+exports.getUsersNotDocente = exports.getUserByUsername = exports.loginUser = exports.createUser = void 0;
 const client_1 = require("@prisma/client");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const prisma = new client_1.PrismaClient();
@@ -146,3 +146,38 @@ const getUserByUsername = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.getUserByUsername = getUserByUsername;
+const getUsersNotDocente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Primero, obtener el ID del rol "Docente"
+        const docenteRole = yield prisma.tb_role.findFirst({
+            where: {
+                name: 'Docente',
+            },
+        });
+        if (!docenteRole) {
+            return res.status(404).json({ error: 'Rol "Docente" no encontrado.' });
+        }
+        // Luego, buscar usuarios cuyo role_id no sea el de "Docente"
+        const users = yield prisma.tb_user.findMany({
+            where: {
+                role_id: {
+                    not: docenteRole.id,
+                },
+            },
+            select: {
+                username: true,
+                email: true,
+                name: true,
+                lastname: true,
+            },
+        });
+        return res.status(200).json(users);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ error: error.message });
+        }
+        return res.status(500).json({ error: 'Se produjo un error inesperado.' });
+    }
+});
+exports.getUsersNotDocente = getUsersNotDocente;

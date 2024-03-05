@@ -1,0 +1,30 @@
+.appbar {
+  background-color: green;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appbar-item {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.appbar-item-large {
+  font-size: 1.5em; /* Ajusta el tamaño del enlace del Dashboard */
+}
+
+.appbar-right {
+  display: flex;
+}
+
+.appbar-right .appbar-item {
+  font-size: 0.8em; /* Ajusta el tamaño de las otras opciones */
+}
+
+/* Estilo adicional para diferenciar el elemento activo o para efectos de hover */
+.appbar-item:hover {
+  background-color: darkgreen;
+}

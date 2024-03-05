@@ -1,22 +1,20 @@
 import React from 'react';
-import '../styles/Dashboard.css'; 
-import Navbar from './Navbar'; 
-import Footer from './Footer'; // Importa el componente Footer
+import { Link } from 'react-router-dom';
+import '../styles/Dashboard.css';
 
-function Dashboard() {
+const Dashboard = () => {
   return (
-    <div className="container">
-      <Navbar /> 
-      
-      <main className="main-content">
-        <button className="add-button">+</button>
-        <h1>Bienvenido al Dashboard</h1>
-        <p>Este es el área principal de tu dashboard. Aquí puedes mostrar información relevante para el usuario, como estadísticas, gráficos, o cualquier otra información importante.</p>
-      </main>
-      
-      <Footer /> 
+    <div className="dashboard">
+      <div className="appbar">
+        <Link to="/" className="appbar-item">Dashboard</Link>
+        <Link to="/temas" className="appbar-item">Temas</Link>
+        <Link to="/estudiantes" className="appbar-item">Estudiantes</Link>
+      </div>
+      <div className="body">
+        {/* Contenido del dashboard */}
+      </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

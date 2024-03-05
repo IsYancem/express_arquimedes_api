@@ -1,16 +1,21 @@
-import React from 'react'
-import Aside from './components/Aside'
-import Cabecera from './components/Cabecera'
-import Content from './components/Content'
-import Footer from './components/Footer'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginForm from './views/LoginForm'; 
+import Dashboard from './views/Dashboard'; 
+import Temas from './views/Temas'; 
+import Estudiantes from './views/Estudiantes'; 
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <Cabecera />
-      <Aside />
-      <Content />
-      <Footer />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/temas" element={<Temas />} />
+        <Route path="/estudiantes" element={<Estudiantes />} />
+      </Routes>
+    </Router>
+  );
 }
+
+export default App;

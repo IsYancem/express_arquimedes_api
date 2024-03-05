@@ -1,22 +1,24 @@
-.container {
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.dashboard .appbar {
+  background-color: green;
+  width: 100%;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar {
-  background-color: #004d40;
+.dashboard .appbar-item {
   color: white;
-  padding: 10px 20px;
+  text-decoration: none;
+  padding: 10px;
 }
 
-.main-content {
-  flex: 1; 
-  padding: 20px;
-}
-
-.footer {
-  background-color: #eeeeee;
-  color: #616161;
-  padding: 10px 20px;
+/* Estilo adicional para diferenciar el elemento activo o para efectos de hover */
+.dashboard .appbar-item:hover {
+  background-color: darkgreen;
 }

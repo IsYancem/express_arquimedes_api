@@ -1,3 +1,4 @@
+/* Temas.css */
 body {
   margin: 0px;
   overflow-x: hidden;
@@ -32,7 +33,9 @@ body {
   background-color: #dddddd;
 }
 
-.edit-icon {
+.edit-icon,
+.delete-icon,
+.view-icon {
   margin-right: 10px;
   color: #007bff;
 }
@@ -45,7 +48,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 20px; 
+  margin: 20px;
   padding: 8px 16px;
   background-color: #007bff;
   color: white;

@@ -1,11 +1,14 @@
+// Temas.js
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faStickyNote } from '@fortawesome/free-solid-svg-icons'; // Agregado el icono de la nota
+import { faEdit, faTrashAlt, faStickyNote, faEye } from '@fortawesome/free-solid-svg-icons'; // Agregado el icono de la nota
 import AppBar from './AppBar';
+import DetalleTema from './DetalleTema'; // Importamos el componente de detalle de tema
 import '../styles/Temas.css';
 
 const Temas = () => {
   const [temas, setTemas] = useState([]);
+  const [selectedTema, setSelectedTema] = useState(null);
 
   useEffect(() => {
     const fetchTemas = async () => {
@@ -35,6 +38,15 @@ const Temas = () => {
     console.log('Eliminar tema con ID:', id);
   };
 
+  const handleView = (tema) => {
+    // Mostrar los detalles del tema seleccionado
+    setSelectedTema(tema);
+  };
+
+  if (selectedTema) {
+    return <DetalleTema tema={selectedTema} />;
+  }
+
   return (
     <div className="temas">
       <AppBar />
@@ -58,6 +70,11 @@ const Temas = () => {
                 <td>{tema.id}</td>
                 <td>{tema.nombre_tema}</td>
                 <td>
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    className="view-icon"
+                    onClick={() => handleView(tema)}
+                  />
                   <FontAwesomeIcon
                     icon={faEdit}
                     className="edit-icon"
